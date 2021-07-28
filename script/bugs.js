@@ -58,10 +58,7 @@
             }, 100)
             var bugId = Math.round(Math.random() * Game.Bugs.bugs.length - 1),
                 $bugDiv = $(Game.Bugs.bugs[bugId]);
-            $bugDiv.addClass('big')
-                .data('type', 2)
-                .height(22)
-                .width(22);
+            $bugDiv.addClass('big').data('type', this.Types.BIG).height(22).width(22);
             var loc =this.calcBugLocation();                 
             $('#s' + loc).html($bugDiv);
             // console.log('big: '+loc);
@@ -73,12 +70,9 @@
         drawSmallBug: function () {
             var bugId = Math.round(Math.random() * Game.Bugs.bugs.length - 1),
                 $bugDiv = $(Game.Bugs.bugs[bugId]);
-            $bugDiv.data('type', 1)
-                .height(18)
-                .width(18);
+            $bugDiv.data('type', this.Types.SMALL).height(18).width(18);
             var loc =this.calcBugLocation();                 
             $('#s' + loc).html($bugDiv);
-            // console.log('small: '+loc);
             $bugDiv.fadeIn();
         },
         /**

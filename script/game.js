@@ -14,7 +14,7 @@
         Run: function () {
             this.runner = setInterval(function () {
                 if (!Game.isPaused) {
-                    Game.mainSnake.Run();
+                    Game.Snake.Stepping();
                     Game.Bugs.Render();
                 }
             }, Game.speed)
@@ -49,19 +49,20 @@
             this.genWorld();
             Game.Move.Init(this.config.rows, this.config.cols, this.config.throughWalls);
             Game.Bugs.Init(this.config.rows * this.config.cols);
-            this.mainSnake = Game.Snake
-                .Create()
-                .SetThroughMyself(this.config.throughMyself)
-                .SetOnEat(this.onEat)
-                .SetOnCrash(this.onCrash)
-                .SetCoord(this.genSnakeCoordinates());
+            Game.Snake.
+                Create().
+                SetThroughMyself(this.config.throughMyself).
+                SetOnEat(this.onEat).
+                SetOnCrash(this.onCrash).
+                SetCoord(this.genSnakeCoordinates()).
+                Init();
             this.keyBundings();
         },
         /**
          * Действие при поедании
          * @param jQuery $head 
          */
-        onEat: function (bugType, snakeCoord) {
+        onEat: function (bugType) {
             switch (bugType) {
                 case Game.Bugs.Types.SMALL:
                     Game.score += 2;

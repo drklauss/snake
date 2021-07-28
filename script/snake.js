@@ -40,10 +40,9 @@
             return this;
         },
         /**
-         * Запуск
+         * Инициализация
          */
-        Run: function () {
-            this.stepping();
+        Init: function () {
             this.blinking();
         },
         /**
@@ -55,7 +54,7 @@
         /**
          * Шагает
          */
-        stepping: function () {
+        Stepping: function () {
             var newCoord = Game.Move.Handle(this.coordinates),
                 tail = this.coordinates[this.coordinates.length - 1];
             this.checkForCollisions(newCoord);
@@ -104,7 +103,8 @@
         blinking: function () {
             setInterval(function () {
                 $('.head').toggleClass('hidden');
-            }, 200);
+                console.log('blink');
+            }, 100);
         }
     };
 })(window.Game);
